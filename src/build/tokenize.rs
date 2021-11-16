@@ -20,6 +20,7 @@ pub fn tokenize(file: String) -> Vec<Token> {
     // TODO clean this stuff up
     let fileLines = fileContents.split("\n");
     let mut currentToken = Token {line: 0, defines: "".to_string()};
+    let mut latestFnToken = Token {line:0, defines: "".to_string()};
     let mut linen = 0;
     for line in fileLines {
         if line.starts_with("func") {
@@ -49,10 +50,18 @@ pub fn tokenize(file: String) -> Vec<Token> {
 
             tokens.push(currentToken);
 
+            // well this warn exists now ig
             currentToken = Token {
                 line: 0,
                 defines: "".to_string(),            
             }
+        } else if line.ends_with(");") {
+            // function call so do shit with that
+            currentToken = Token {
+                line: linen,
+                defines: line.to_string(),
+            };
+            tokens.push(currentToken);    
         }
         linen = linen + 1;
     }

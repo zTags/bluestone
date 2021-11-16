@@ -1,7 +1,10 @@
 // WORKING add help
 // TODO basic parser
-// TODO -
+// TODO add builtin trait. ex: #[builtin(name="print")]
+// TODO create actual documentation in form of markdown
 
+
+// I'll use whatever fucking naming convention I want.
 #![allow(non_snake_case)]
 
 mod doc;
@@ -15,6 +18,8 @@ fn help(len: usize, subc: Vec<String>) {
     } else {
         println!("{} isnt a valid subcommand", subc[1]);
     }
+
+    // TODO actually add an help "menu"
 }
 
 fn main() {

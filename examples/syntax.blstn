@@ -1,0 +1,8 @@
+func main_rt! {
+	new lamp(0, 64, 0).on();
+}
+
+func main_ct() {
+	// do something else here
+	builtin::print("Hello World");
+}
