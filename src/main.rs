@@ -1,10 +1,7 @@
 // WORKING add help
 // TODO basic parser
-// TODO add builtin trait. ex: #[builtin(name="print")]
-// TODO create actual documentation in form of markdown
+// TODO -
 
-
-// I'll use whatever fucking naming convention I want.
 #![allow(non_snake_case)]
 
 mod doc;
@@ -13,13 +10,39 @@ mod build;
 use std::env;
 
 fn help(len: usize, subc: Vec<String>) {
+    println!();
     if len <= 1 {
         println!("Please provide an argument");
-    } else {
+    } else if subc[1] != "help".to_string() {
         println!("{} isnt a valid subcommand", subc[1]);
     }
 
-    // TODO actually add an help "menu"
+    println!("bluestone v0.1.0-indev");
+    println!("--- subcommands ---");
+    println!("build - builds your bluestone file. (eg `bluestone build main.blstn`)");
+    println!("doc - build markdown documentation for your bluestone file. (eg `bluestone doc main.blstn`)");
+    println!("version - prints version info");
+    println!("--- flags ---");
+    println!("-v or --verbose - prints extra debug info");
+    println!("-d or --debug - print a lot of debug info (not reccomended to use)");
+    println!("\nthanks for using bluestone :D\n");
+
+    let mut verbose = false;
+    let mut debug = false;
+    if subc.contains(&"-v".to_string()) || subc.contains(&"--verbose".to_string()) {
+        verbose = true;
+    } else if subc.contains(&"-d".to_string()) || subc.contains(&"--debug".to_string()) {
+        debug = true;
+    }
+
+    if verbose {
+        println!("we are verbose");
+    }
+
+    if debug {
+        println!("we are debug");
+    }
+
 }
 
 fn main() {
